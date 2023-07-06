@@ -1,0 +1,135 @@
+{% extends "base.html" %}
+{% block stylesheet %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/aruco.css')}}">
+{% endblock stylesheet %}
+{% block sub_navigation %}
+<li class="nav-item"><a href="{{ url_for('index')}}" class="nav-link">Home</a></li>
+{% endblock %}
+{% block content %}
+
+<body class="x-hidden has-sticky-header d-flex flex-column min-vh-100">
+	<div class="container">
+		<h1 class="zuri text-center">ArUco markers Generator!</h1>
+		<form class="setup text-center">
+			<div class="field">
+				<label for="frm-size">Marker size, mm:</label>
+				<input id="frm-size" name="size" type="number" min="10" max="5000" value="100">
+			</div>
+		</form>
+
+		<div class="marker"></div>
+		<div class="tools">
+			<a href="" class="save-button">Save</a> this marker as SVG, or
+			<a href="" class="download-button">download</a> as png image.
+		</div>
+	</div>
+</body>
+{% block footer_scripts %}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/canvg/1.3/canvg.js"></script>
+<script>
+	function generateMarkerSvg(width, height, bits, fixPdfArtifacts = true) {
+		var svg = document.createElement('svg');
+		svg.setAttribute('viewBox', '0 0 ' + (width + 2) + ' ' + (height + 2));
+		svg.setAttribute('xmlns', 'http://www.w3.org/2000/svg');
+		svg.setAttribute('shape-rendering', 'crispEdges');
+
+		// Background rect
+		var rect = document.createElement('rect');
+		rect.setAttribute('x', 0);
+		rect.setAttribute('y', 0);
+		rect.setAttribute('width', width + 2);
+		rect.setAttribute('height', height + 2);
+		rect.setAttribute('fill', 'black');
+		svg.appendChild(rect);
+
+		// "Pixels"
+		for (var i = 0; i < height; i++) {
+			for (var j = 0; j < width; j++) {
+				var white = bits[i * height + j];
+				if (!white) continue;
+
+				var pixel = document.createElement('rect');;
+				pixel.setAttribute('width', 1);
+				pixel.setAttribute('height', 1);
+				pixel.setAttribute('x', j + 1);
+				pixel.setAttribute('y', i + 1);
+				pixel.setAttribute('fill', 'white');
+				svg.appendChild(pixel);
+
+				if (!fixPdfArtifacts) continue;
+
+				if ((j < width - 1) && (bits[i * height + j + 1])) {
+					pixel.setAttribute('width', 1.5);
+				}
+
+				if ((i < height - 1) && (bits[(i + 1) * height + j])) {
+					var pixel2 = document.createElement('rect');;
+					pixel2.setAttribute('width', 1);
+					pixel2.setAttribute('height', 1.5);
+					pixel2.setAttribute('x', j + 1);
+					pixel2.setAttribute('y', i + 1);
+					pixel2.setAttribute('fill', 'white');
+					svg.appendChild(pixel2);
+				}
+			}
+		}
+
+		return svg;
+	}
+
+	function generateArucoMarker(width, height, dictName, id, dict) {
+		var bytes = dict[dictName][id];
+		var bits = [];
+		var bitsCount = width * height;
+
+		// Parse marker's bytes
+		for (var byte of bytes) {
+			var start = bitsCount - bits.length;
+			for (var i = Math.min(7, start - 1); i >= 0; i--) {
+				bits.push((byte >> i) & 1);
+			}
+		}
+
+		return generateMarkerSvg(width, height, bits);
+	}
+
+	async function init() {
+		var loadDict = await (await fetch("{{ url_for('static', filename='js/dict.json')}}")).json();
+		var sizeInput = document.querySelector('.setup input[name=size]');
+		var saveButton = document.querySelector('.save-button');
+		var download_button = document.querySelector('.download-button');
+
+		function updateMarker() {
+			var dictName = "6x6_1000";
+			var markerId = 1;
+			var width = 6;
+			var height = 6;
+			var size = Number(sizeInput.value);
+
+			var svg = generateArucoMarker(width, height, dictName, markerId, loadDict);
+			svg.setAttribute('width', size + 'mm');
+			svg.setAttribute('height', size + 'mm');
+			document.querySelector('.marker').innerHTML = svg.outerHTML;
+			saveButton.setAttribute('href', 'data:image/svg;base64,' + btoa(svg.outerHTML.replace('viewbox',
+				'viewBox')));
+			saveButton.setAttribute('download', dictName + '-' + markerId + '.svg');
+
+			var svg1 = document.querySelector('.marker svg');
+			var data = (new XMLSerializer()).serializeToString(svg1);
+			var canvas = document.createElement('canvas');
+			canvg(canvas, data, {
+				renderCallback: function () {
+					canvas.toBlob(function (blob) {
+						download_button.setAttribute('href', window.URL.createObjectURL(blob));
+					});
+				}
+			});
+			download_button.setAttribute('download', 'marker.png');
+		}
+		updateMarker();
+		sizeInput.addEventListener('input', updateMarker);
+	}
+	init();
+</script>
+{% endblock footer_scripts %}
+{% endblock %}

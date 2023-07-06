@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <script type="text/javascript" nomodule="" src="https://cdnjs.cloudflare.com/ajax/libs/core-js/3.15.2/minified.js">
+    </script>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/chat.css')}}">
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js">
+    </script>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css')}}">
+    <script src="https://code.jquery.com/jquery-3.6.3.js"
+        integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM=" crossorigin="anonymous"></script>
+    <script src="https://netdna.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Noto+Sans|Roboto:300,400,500,700" rel="stylesheet">
+    <link href='https://fonts.googleapis.com/css?family=Google+Sans:400,500,700|Material+Icons' rel='stylesheet'
+        type='text/css'>
+</head>
+
+<div class="fixed-height" id="chatbox-container">
+    <div id='chat' class="chatbox conversation-part--animation ">
+    </div>
+</div>
+<div class="composer">
+    <pre class="send-button"></pre>
+    <textarea id="textInput" class="" placeholder="Type an answer"></textarea>
+</div>
+
+<script type="text/javascript">
+    (function () {
+        var question = `<div class="conversation-part conversation-part--question">
+            <div class="avatar-wrapper same-row">
+                <div class="avatar"></div>
+            </div>
+            <div class="same-row question-part text-ltr">
+                <div class="bubble no-border" style="display: table; direction: unset;">
+                    <div class="bubble-label"></div>
+                </div>
+            </div>
+        </div>`
+        var answer = `<div class="conversation-part conversation-part--animation conversation-part--answer">
+            <div class="answer text-ltr">
+                <div class="bubble no-border theme-background">
+                    <div class="bubble-label"></div>
+                </div>
+            </div>
+        </div>`
+        var Message;
+        Message = function (arg) {
+            this.text = arg.text, this.message_side = arg.message_side;
+            this.draw = function (_this) {
+                return function () {
+                    var $message;
+                    $message = _this.message_side == 'left' ?
+                        $($.parseHTML(question)) :
+                        $($.parseHTML(answer));
+                    $message.find('.bubble-label').html(_this.text);
+                    $('#chat').append($message);
+                    return setTimeout(function () {
+                        return $message.addClass('appeared');
+                    }, 0);
+                };
+            }(this);
+            return this;
+        };
+        $(function () {
+            var getMessageText, sendMessage;
+            var $message_input;
+            getMessageText = function () {
+                $message_input = $('#textInput');
+                return $message_input.val();
+            };
+            sendMessage = function (text, message_side) {
+                var $messages, message;
+                if (text.trim() === '') {
+                    return;
+                }
+                $('#textInput').val('');
+                $messages = $('#chatbox-container');
+                message = new Message({
+                    text: text,
+                    message_side: message_side
+                });
+                message.draw();
+                return $messages.animate({
+                    scrollTop: $messages.prop('scrollHeight')
+                }, 300);
+            };
+            var chat;
+            chat = function (message) {
+                $.ajax({
+                    type: 'POST',
+                    url: "{{ url_for('get_chatbot_response')}}",
+                    data: JSON.stringify({
+                        "data": getMessageText()
+                    }),
+                    contentType: 'application/json;charset=UTF-8',
+                    cache: false,
+                    success: function (data) {
+                        setTimeout(function () {
+                            sendMessage(data.response, 'left');
+                        }, 500)
+                    },
+                });
+            };
+
+            $('.send-button').click(function (e) {
+                chat(getMessageText());
+                return sendMessage(getMessageText(), 'right');
+            });
+            $('#textInput').keyup(function (e) {
+                if (e.which === 13) {
+                    chat(getMessageText());
+                    return sendMessage(getMessageText(), 'right');
+                }
+            });
+            sendMessage('Hello what can i help you ?', 'left');
+        });
+    }.call(this));
+</script>
+
+</html>

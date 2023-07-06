@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% block stylesheet %}
+<style>
+
+</style>
+{% endblock stylesheet %}
+{% block sub_navigation %}
+<li class="nav-item"><a href="{{ url_for('index')}}" class="nav-link">Home</a></li>
+{% endblock %}
+{% block content %}
+<body class="x-hidden has-sticky-header">
+    <div class="container">
+        <!-- Ads -->
+        <script type="text/javascript">
+            var pollDreamUrl = "https://deepdreamgenerator.com/generator/poll-dream/um40i08lozw";
+            var fastTypeUpscaleLimit = 10;
+        </script>
+        <!-- Generating dream image section -->
+        <div ddg-type="dream" ddg-uid="um40i08lozw" ddg-delete-redirect="/" class="ddg-attributes generating-image ">
+            <div class="with-h4">
+                <h4>Generating Deep Style image...&nbsp;</h4>
+            </div>
+            <div class="clearfix"></div>
+            <div class="job-progress">
+                <div class="jobs-in-queue">Processing</div>
+                <div class="progress-wrap progress" data-progress-percent="5">
+                    <span class="percents">5%</span>
+                    <div class="progress-bar progress" style="left: 57.3px;"></div>
+                </div>
+            </div>
+            <div class="uil-ring-css" style="-webkit-transform: scale(0.6);">
+                <div></div>
+            </div>
+        </div>
+    </div>
+</body>
+{% endblock %}

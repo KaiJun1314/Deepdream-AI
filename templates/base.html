@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+
+{% block meta %}
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>{% block title %}DeepDream AI{% endblock %}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Workshop 2 Group 12" />
+    <meta name="description"
+        content="This project is a web application that embedded with artwork generator which aim to commercialise the autism people artwork by utilising the Artificial Intelligence (AI) technique.">
+    <meta name="keywords" content="images free,stock images,stock free images,deepai,arts" />
+
+    <meta name="theme-color" content="#2F5BE7" />
+    <link rel="apple-touch-icon" sizes="144x144"
+        href="{{ url_for('static', filename='images/favicon/apple-touch-icon.png')}}">
+    <link rel="icon" type="image/png" sizes="32x32"
+        href="{{ url_for('static', filename='images/favicon/favicon-32.png')}}">
+    <link rel="icon" type="image/png" sizes="16x16"
+        href="{{ url_for('static', filename='images/favicon/favicon-16.png')}}">
+    <meta name="msapplication-TileColor" content="#2d89ef">
+    <meta name="theme-color" content="#ffffff">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/owl.carousel.min.css')}}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css')}}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css')}}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/chatbot.css')}}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/responsive.css')}}">
+    <link href="https://fonts.googleapis.com/css?family=Noto+Sans|Roboto:300,400,500,700" rel="stylesheet">
+    <link href='https://fonts.googleapis.com/css?family=Google+Sans:400,500,700|Material+Icons' rel='stylesheet'
+        type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Google+Sans:400,500,700|Material+Icons' rel='stylesheet'
+        type='text/css'>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css"
+        integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
+    {% block stylesheet %}{% endblock stylesheet %}
+</head>
+{% endblock meta %}
+
+<body>
+    {% block navigation %}
+    <nav class="navbar navbar-expand-lg fixed-top custom-menu custom-menu__light">
+        <div class="container">
+            <a class="navbar-brand nav-logo" style="color: #606060" href="{{ url_for('index')}}">
+                <img id="logo_img" src="{{ url_for('static', filename='images/logo-color-crop.png')}}" height="50"
+                    class="nav-logo" alt="DeepDreamAI Logo">
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="menu-icon__circle">
+                </span>
+                <span class="menu-icon">
+                    <span class="menu-icon__bar"></span>
+                    <span class="menu-icon__bar"></span>
+                    <span class="menu-icon__bar"></span>
+                </span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ml-lg-auto">
+                    {% block sub_navigation %}
+                    {% endblock sub_navigation %}
+                    <li class="nav-item"><a href="http://localhost/WordPress/shop/" class="nav-link">Shop</a></li>
+                </ul>
+                <div class="custom-menu__right">
+                    <a href="{{ url_for('art_generator')}}"class="event-btn" rel="noreferrer">Generate Art</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+    {% endblock %}
+    {% block content %}
+    {% endblock content %}
+    <div id="chat-bot-frame-container" style="display: none;" class="chat-bot-frame-left">
+        <div id="chat-bot-frame-wrap">
+            <iframe src="{{ url_for('get_chatbot') }}" scrolling="no" allowfullscreen="" title=""
+                id="chat-bot-iframe"></iframe>
+        </div>
+        <div id="chat-bot-widget-close"></div>
+        <div id="chat-bot-launcher-restart"></div>
+    </div>
+
+    <div id="chat-bot-launcher-container" class="chat-bot-flex-end chat-bot-launcher-left chat-bot-launcher-enabled">
+        <div id="chat-bot-launcher" class="chat-bot-launcher chat-bot-flex-center chat-bot-launcher-active close-button"
+            style="background-color: rgb(45, 196, 100);">
+            <div id="chat-bot-launcher-button" class="chat-bot-launcher-button"></div>
+            <div id="chat-bot-launcher-text">Chat now</div>
+        </div>
+    </div>
+
+    {% block footer %}
+    <footer class="mt-auto footer-section section-spacer">
+        <div class="container">
+            <div class="row flex-column-reverse flex-sm-row flex-lg-row">
+                <div class="col-md-4 col-12 text-center">
+                    <div class="footer-widget first-of-footer-widget">
+                        <img data-src="{{ url_for('static', filename='images/UtemLogo.png')}}" class="logo-sm mb-10"
+                            alt="UTeM FTMK Logo">
+                        <p>Proudly powered by Group 12 <br> Copyright &copy; 2022. All Rights Reserved.</p>
+
+                        <ul class="social-list__inline mt-10">
+                            <li>
+                                <a href="https://twitter.com" target="_blank" rel="noopener">
+                                    <i class="fab fa-twitter"></i>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://www.instagram.com/" target="_blank" rel="noopener">
+                                    <i class="fab fa-instagram"></i>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://linkedin.com/" target="_blank" rel="noopener">
+                                    <i class="fab fa-linkedin"></i>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://wa.me/601111908053?text=Hi,%20Kai%20Jun" target="_blank"
+                                    rel="noopener">
+                                    <i class="fab fa-whatsapp"></i>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="mailto:b032010159@student.utem.edu.my" class="far fa-envelope"></a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="col-md-8 col-sm-10">
+                    <div class="row">
+                        <div class="col-md-4 col-6">
+                            <div class="footer-widget">
+                                <h4 class="footer-widget__title">Team Member</h4>
+                                <ul class="list-unstyled">
+                                    <li>WONG KAI JUN</li>
+                                    <li>BOSSGANABATHI A/L VELLOW</li>
+                                    <li>SYAKIRAH HANIM BINTI ZULKERNAIN</li>
+                                    <li>ABDULLAH HARITH BIN JAMADI</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="col-md-3 col-6">
+                            <div class="footer-widget">
+                                <h4 class="footer-widget__title">&#x200b;</h4>
+                                <ul class="list-unstyled">
+                                    <li>B032010159</li>
+                                    <li>B032110418</li>
+                                    <li>B032010116</li>
+                                    <li>B032010181</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-md-4 col-6">
+                            <div class="footer-widget">
+                                <h4 class="footer-widget__title">Special Thanks to</h4>
+                                <ul class="list-unstyled">
+                                    <li><b>Surpervisor</b> : Dr. Yogan Jaya Kumar</li>
+                                    <li>Workshop 2 Committe</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    {% endblock %}
+
+    {% block footer_scripts %}{% endblock footer_scripts %}
+    <script src="{{ url_for('static', filename='js/vendors/jquery.min.js')}}"></script>
+    <script src="{{ url_for('static', filename='js/vendors/bootstrap.bundle.min.js')}}"></script>
+    <script src="{{ url_for('static', filename='js/vendors/jquery.magnific-popup.min.js')}}"></script>
+    <script src="{{ url_for('static', filename='js/vendors/jquery.easing.min.js')}}"></script>
+    <script src="{{ url_for('static', filename='js/vendors/swiper.min.js')}}"></script>
+    <script src="{{ url_for('static', filename='js/vendors/owl.carousel.min.js')}}"></script>
+    <script async>
+        function imageIntersectionObserverCallback(imageEntries, observer) {
+            imageEntries.forEach(imgEntry => {
+                if (imgEntry.isIntersecting) {
+                    imgEntry.target.setAttribute('src', imgEntry.target.dataset.src);
+                    observer.unobserve(imgEntry.target);
+                }
+            })
+        }
+        const imageObserver = new IntersectionObserver(imageIntersectionObserverCallback, {
+            rootMargin: '30px 0px'
+        });
+        imageObserver.POLL_INTERVAL = 200;
+        imageObserver.USE_MUTATION_OBSERVER = false;
+        document.querySelectorAll('img[data-src]').forEach(img => {
+            imageObserver.observe(img);
+        })
+    </script>
+    <script async>
+        function iframeObserverCallback(iframeEntries, observer) {
+            iframeEntries.forEach(iframe => {
+                if (iframe.isIntersecting && window.matchMedia('(min-width: 450px)').matches) {
+                    iframe.target.setAttribute('src', iframe.target.dataset.urllink);
+                    observer.unobserve(iframe.target);
+                }
+            })
+        }
+
+        const iframeObserver = new IntersectionObserver(iframeObserverCallback, {
+            rootMargin: '30px 0px'
+        });
+        iframeObserver.POLL_INTERVAL = 200;
+        iframeObserver.USE_MUTATION_OBSERVER = false;
+        document.querySelectorAll('iframe[data-urllink]').forEach(img => {
+            iframeObserver.observe(img);
+        });
+    </script>
+    <script>
+        $(document).ready(function () {
+            function open() {
+                $("#chat-bot-frame-container").show(300);
+                $("#chat-bot-frame-container").addClass("chat-bot-frame-container-active");
+            };
+
+            function close() {
+                $("#chat-bot-frame-container").hide(300);
+                $("#chat-bot-frame-container").removeClass("chat-bot-frame-container-active");
+                $('#chat-bot-iframe').attr("src", $('#chat-bot-iframe').attr("src"));
+            };
+
+            $("#chat-bot-launcher").click(function (e) {
+                return $("#chat-bot-frame-container").is(":visible") ? close() : open();
+            });
+            $("#chat-bot-widget-close").click(close);
+            $('#chat-bot-launcher-restart').click(function () {
+                $('#chat-bot-iframe').attr("src", $('#chat-bot-iframe').attr("src"))
+            });
+        });
+
+        var alert = function (message, type) {
+        let alert =
+            `<div class="alert alert-${type} alert-dismissible fade show" role="alert">${message}<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>`
+        $("#user-notifications").append(alert);
+        $(".alert").show();
+    }
+    </script>
+</body>
+
+
+</html>

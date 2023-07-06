@@ -1,0 +1,228 @@
+{% extends "base.html" %}
+{% block stylesheet %}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/css/lightbox.min.css">
+{% endblock stylesheet %}
+{% block sub_navigation %}
+<li class="nav-item active">
+    <a class="nav-link" href="{{ url_for('index')}}#overview">About Us
+        <span class="sr-only">(current)</span>
+    </a>
+</li>
+<li class="nav-item"><a href="{{ url_for('index')}}#services" class="nav-link">Services</a></li>
+<li class="nav-item"><a href="{{ url_for('index')}}#gallery" class="nav-link">Gallery</a></li>
+{% endblock %}
+{% block content %}
+<body class="x-hidden has-sticky-header d-flex flex-column min-vh-100">
+    <header id="hero" class="hero">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-12 col-sm-6">
+                    <div class="hero-content">
+                        <div class="hero-title__group">
+                            <div class="hero-title">
+                                <h1 class="zuri"><br>DeepDream AI<br></h1>
+                            </div>
+                            <div class="Hero--Subtitle">
+                                <p class="lead">
+                                    <first-letter>DeepDream AI</first-letter> is a website that embedded with artwork
+                                    generator which aim to commercialise the autism people artwork by utilising the
+                                    Artificial Intelligence (AI) technique. Unique artwork is created in collaboration
+                                    between <second-letter>autism people</second-letter> and <third-letter>machine
+                                    </third-letter>.
+                                </p>
+                            </div>
+                        </div>
+                        <a href="{{ url_for('art_generator')}}" class="hero-button" rel="noopener"><i
+                                class="fab fa-meetup"></i> &nbsp; Generate Art</a>
+                    </div>
+                </div>
+                <div class="col-12 col-sm-5 ml-auto">
+                    <div class="hero-figure">
+                        <img data-src="{{ url_for('static', filename='images/kid3.png')}}" class="img-fluid w-100"
+                            alt="Autism child illustration">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <section id="overview" class="section-spacer bg-very__gray">
+        <div class="container">
+            <header class="section-header text-center">
+                <h2 class="section-title">About us</h2>
+                <h4>Different, Not Less — Dr Temple Grandin</h4>
+            </header>
+            <div class="row">
+                <div class="col-md-4 col-12">
+                    <div class="feature-card">
+                        <div class="feature-card__body">
+                            <i class="fas fa-rocket ghost-blue"></i>
+                            <h4 class="feature-title">Concept of DeepDream AI</h4>
+                            <p>Many autism people faced difficulty in maintaining thier life due to lack of support from
+                                the social. We provide a platform for them to publish thier art to generate fund.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 col-12">
+                    <div class="feature-card">
+                        <div class="feature-card__body">
+                            <i class="fas fa-lightbulb ghost-green"></i>
+                            <h4 class="feature-title">Why DeepDream AI?</h4>
+                            <p>DeepDream AI is free for autism people and public to use !!. In addition, various service
+                                are provided such as Printing service, Augmented Reality (AR), Chatbot, Marketplace,
+                                etc.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 col-12">
+                    <div class="feature-card m-0">
+                        <div class="feature-card__body">
+                            <i class="fas fa-users ghost-red"></i>
+                            <h4 class="feature-title">Our Main Objective</h4>
+                            <p>DeepDream AI's main objective is to generate necessary funds to support kids and family
+                                with special needs, by selling the autism people's artwork in the marketplace.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Services -->>
+    <section id="services" class="section-spacer">
+        <div class="container">
+            <header class="section-header text-center">
+                <h2 class="section-title">What Are The Services We offer</h2>
+                <br>
+            </header>
+            <div class="row align-items-center">
+                <div class="col-sm-6">
+                    <div class="feature-list-image">
+                        <img data-src="{{ url_for('static', filename='images/printing_service.jpg')}}" class="img-fluid"
+                            alt="Printing Service Illustration" width="100%" height="50%">
+                    </div>
+                </div>
+                <div class="col-sm-5 ml-auto">
+                    <div class="feature-list-wrapper">
+                        <div class="content-header">
+                            <h2 class="content-title">Printing Services</h2>
+                            <p>Having a physical copy of your artwork to display in your place is certainly satisfying!
+                                In collabaration with our partner printing service lab, our client may print out
+                                whatever arts they like at ease, all of which preserve original colors and offer a slew
+                                of gorgeous arts.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="section-spacer bg-very__gray">
+        <div class="container">
+            <div class="row flex-column-reverse flex-sm-row align-items-cengit ter align-items-center">
+                <div class="col-sm-5 mr-auto">
+                    <div class="feature-list-wrapper">
+                        <div class="content-header">
+                            <h2 class="content-title">Online Marketplace</h2>
+                            <p>We have prepared an online platform with a delightful web experience for the client.
+                                Various features are developed to enrich client experience such as review forum,
+                                logistics, payment gateway, etc.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="feature-list-image">
+                        <img src="{{ url_for('static', filename='images/marketplace.png')}}"
+                            alt="Marketplace Illustration" class="img-fluid" , height="100%">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section id="hip" class="section-spacer">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-sm-6">
+                    <div class="feature-list-image">
+                        <img data-src="{{ url_for('static', filename='images/augmented_reality.jpg')}}"
+                            class="img-fluid" alt="Augmented Reality Illustration" width="80%">
+                    </div>
+                </div>
+                <div class="col-sm-6 ml-auto">
+                    <div class="feature-list-wrapper">
+                        <div class="content-header">
+                            <h2 class="content-title">Augmented Reality</h2>
+                            <p>Augmented reality allow client to map the artwork with frame to real world place through
+                                the lens of phone. We provide augmented reality services as a trial preview to let
+                                client visualize the effect of the artworks at certain location especially on an empty
+                                wall before buying the artwork.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="section-spacer bg-very__gray">
+        <div class="container">
+            <div class="row flex-column-reverse flex-sm-row align-items-cengit ter align-items-center">
+                <div class="col-sm-5 mr-auto">
+                    <div class="feature-list-wrapper">
+                        <div class="content-header">
+                            <h2 class="content-title">Chatbot</h2>
+                            <p>The chatbot is developed to process human conversation and given response to them. Client
+                                can seek for help if they face difficulty in using our web application. In addition,
+                                client can ask question about our product or return policy or term and condition, etc.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="feature-list-image">
+                        <img data-src="{{ url_for('static', filename='images/Chatbot.png')}}" class="img-fluid"
+                            alt="Chatbot Illustration" height="60%" width="80%">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Gallery -->
+    <section id="gallery" class="section-spacer">
+        <div class="container">
+            <header class="text-center section-header">
+                <h2 class="section-title">Our Gallery</h2>
+                <span class="section-subtitle">Everyone’s story is different. Lets get inside their world through the
+                    art</span>
+            </header>
+            <div class="lightbox-gallery">
+                <div id="gallery-dev" class="row photos">
+                </div>
+            </div>
+            <div class="text-center mt-50">
+                <a href="http://localhost/WordPress/shop/" class="hero-button" target="_blank" rel="noopener">More
+                    Art</a>
+            </div>
+        </div>
+    </section>
+    <!-- Youtube -->
+    <section class="section-spacer bg-very__gray">
+        <div class="container">
+            <header class="text-center section-header">
+                <h2 class="section-title">How Unique Art Is Created</h2>
+            </header>
+            <div class="d-flex justify-content-center">
+                <iframe width="640" height="360" src="https://www.youtube.com/embed/WnL8_mFE2CE" title="Autism Video"
+                    frameborder="0"
+                    allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowfullscreen></iframe>
+            </div>
+    </section>
+    <a href="#" id="scroll" style="display: none;"><i class="fas fa-angle-up"></i></a>
+    {% endblock content %}
+    {% block footer_scripts %}
+    <script src="{{ url_for('static', filename='js/components.js')}}"></script>
+    <script src="{{ url_for('static', filename='js/custom.js')}}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/js/lightbox.min.js"></script>
+    {% endblock footer_scripts %}
+</body>
+
+</html>

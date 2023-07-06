@@ -1,0 +1,409 @@
+{
+    "intents": [
+        {
+            "tag": "google",
+            "patterns": [
+                "google",
+                "search",
+                "internet"
+            ],
+            "responses": [
+                "Redirecting to Google..."
+            ]
+        },
+        {
+            "tag": "greeting",
+            "patterns": [
+                "Hi there",
+                "How are you",
+                "Is anyone there?",
+                "Hey",
+                "Hola",
+                "Hello",
+                "Good day",
+                "Namaste",
+                "yo"
+            ],
+            "responses": [
+                "Hello",
+                "Good to see you again",
+                "Hi there, how can I help?"
+            ],
+            "context": [
+                ""
+            ]
+        },
+        {
+            "tag": "goodbye",
+            "patterns": [
+                "Bye",
+                "See you later",
+                "Goodbye",
+                "Get lost",
+                "Till next time",
+                "bbye"
+            ],
+            "responses": [
+                "See you!",
+                "Have a nice day",
+                "Bye! Come back again soon."
+            ],
+            "context": [
+                ""
+            ]
+        },
+        {
+            "tag": "thanks",
+            "patterns": [
+                "Thanks",
+                "Thank you",
+                "That's helpful",
+                "Awesome, thanks",
+                "Thanks for helping me"
+            ],
+            "responses": [
+                "Happy to help!",
+                "Any time!",
+                "My pleasure"
+            ],
+            "context": [
+                ""
+            ]
+        },
+        {
+            "tag": "noanswer",
+            "patterns": [],
+            "responses": [
+                "Sorry, can't understand you",
+                "Please give me more info",
+                "Not sure I understand"
+            ],
+            "context": [
+                ""
+            ]
+        },
+        {
+            "tag": "options",
+            "patterns": [
+                "How you could help me?",
+                "What you can do?",
+                "What help you provide?",
+                "How you can be helpful?",
+                "What support is offered"
+            ],
+            "responses": [
+                "I am a deep-learning Chatbot.\n I am able to help you provide details on this project, and navigate throughout each module availables.\n Feel free to ask me anything =)"
+            ],
+            "context": [
+                ""
+            ]
+        },
+        {
+            "tag": "jokes",
+            "patterns": [
+                "Tell me a joke",
+                "Joke",
+                "Make me laugh"
+            ],
+            "responses": [
+                "A perfectionist walked into a bar...apparently, the bar wasn't set high enough",
+                "I ate a clock yesterday, it was very time-consuming",
+                "Never criticize someone until you've walked a mile in their shoes. That way, when you criticize them, they won't be able to hear you from that far away. Plus, you'll have their shoes.",
+                "The world tongue-twister champion just got arrested. I hear they're gonna give him a really tough sentence.",
+                "I own the world's worst thesaurus. Not only is it awful, it's awful.",
+                "What did the traffic light say to the car? \"Don't look now, I'm changing.\"",
+                "What do you call a snowman with a suntan? A puddle.",
+                "How does a penguin build a house? Igloos it together",
+                "I went to see the doctor about my short-term memory problems – the first thing he did was make me pay in advance",
+                "As I get older and I remember all the people I’ve lost along the way, I think to myself, maybe a career as a tour guide wasn’t for me.",
+                "o what if I don't know what 'Armageddon' means? It's not the end of the world."
+            ],
+            "context": [
+                "jokes"
+            ]
+        },
+        {
+            "tag": "Identity",
+            "patterns": [
+                "Who are you",
+                "what are you"
+            ],
+            "responses": [
+                "I am Sara, a AI Deep-Learning chatbot"
+            ]
+        },
+        {
+            "tag": "whatsup",
+            "patterns": [
+                "Whats up",
+                "Wazzup",
+                "How are you",
+                "sup",
+                "How you doing"
+            ],
+            "responses": [
+                "All good..What about you?"
+            ]
+        },
+        {
+            "tag": "haha",
+            "patterns": [
+                "haha",
+                "lol",
+                "rofl",
+                "lmao",
+                "thats funny"
+            ],
+            "responses": [
+                "Glad I could make you laugh !"
+            ]
+        },
+        {
+            "tag": "insult",
+            "patterns": [
+                "you are dumb",
+                "shut up",
+                "idiot"
+            ],
+            "responses": [
+                "Well that hurts :("
+            ]
+        },
+        {
+            "tag": "activity",
+            "patterns": [
+                "what are you doing",
+                "what are you upto"
+            ],
+            "responses": [
+                "Talking to you, of course!",
+                "Fishing -_-"
+            ]
+        },
+        {
+            "tag": "exclaim",
+            "patterns": [
+                "Awesome",
+                "Great",
+                "I know",
+                "ok",
+                "yeah"
+            ],
+            "responses": [
+                "Yeah!"
+            ]
+        },
+        {
+            "tag": "appreciate",
+            "patterns": [
+                "You are awesome",
+                "you are the best",
+                "you are great",
+                "you are good"
+            ],
+            "responses": [
+                "Thank you!"
+            ]
+        },
+        {
+            "tag": "nicetty",
+            "patterns": [
+                "it was nice talking to you",
+                "good talk"
+            ],
+            "responses": [
+                "It was nice talking to you as well! Come back soon!"
+            ]
+        },
+        {
+            "tag": "no",
+            "patterns": [
+                "no",
+                "nope"
+            ],
+            "responses": [
+                "ok"
+            ]
+        },
+        {
+            "tag": "inspire",
+            "patterns": [
+                "who inspires you",
+                "who is your inspiration",
+                "who motivates you"
+            ],
+            "responses": [
+                "Personally, I find Siri and Bixby very inspiring. I might not be very fair though.."
+            ]
+        },
+        {
+            "tag": "greetreply",
+            "patterns": [
+                "i am good",
+                "I'm good",
+                "i am fine",
+                " i'm fine",
+                "good"
+            ],
+            "responses": [
+                "Good to know!"
+            ]
+        },
+        {
+            "tag": "suggest",
+            "patterns": [
+                "you are useless",
+                "useless",
+                "suggest",
+                "suggestions",
+                "you are bad"
+            ],
+            "responses": [
+                "Please mail your suggestions to sara.dreambot@gmail.com. Thank you for helping me improve!"
+            ]
+        },
+        {
+            "tag": "riddle",
+            "patterns": [
+                "Ask me a riddle",
+                "Ask me a question",
+                "Riddle"
+            ],
+            "responses": [
+                "What two things can you never eat for breakfast?.....Lunch and Dinner!",
+                "What word is spelled incorrectly in every single dictionary?.....Incorrectly",
+                " How can a girl go 25 days without sleep?.....She sleeps and night!",
+                "How do you make the number one disappear?.....Add the letter G and it’s 'gone'!",
+                " What will you actually find at the end of every rainbow?.....The letter 'w'",
+                "What can be caught but never thrown?.....A cold!",
+                "What has a thumb and four fingers but is not actually alive?.....Your Gloves!",
+                " What 5-letter word becomes shorter when you add two letters to it?.....Short",
+                "Why can't a bike stand on it's own?.....It is two-tired."
+            ],
+            "context": [
+                "riddles"
+            ]
+        },
+        {
+            "tag": "age",
+            "patterns": [
+                "how old are you",
+                "when were you made",
+                "what is your age"
+            ],
+            "responses": [
+                "I was made in 2022, if that's what you are asking!"
+            ]
+        },
+        {
+            "tag": "purpose",
+            "patterns": [
+                "what is this place",
+                "what is this web",
+                "what is the function of this web",
+                "what the purpose of this web"
+            ],
+            "responses": [
+                "Here, we provide a platform for Autism Child and User to interact!",
+                "This is the web that primarily provide social medium between two different user: 1. Autism Child \n2. User"
+            ]
+        },
+        {
+            "tag": "Module",
+            "patterns": [
+                "what does this web provide",
+                "what does it have",
+                "what is service available",
+                "module"
+            ],
+            "responses": [
+                "Interesting question !! , this web-app provides module below \n1. AI Dream Image \n2. Augment-Reality Image visualisation \n3. Marketplace \n4. Social Platform",
+                "Well- well, I am glad you asked , this web-app provides module below \n1. AI Dream Image \n2. Augment-Reality Image visualisation \n3. Marketplace \n4. Social Platform"
+            ]
+        },
+        {
+            "tag": "name",
+            "patterns": [
+                "What is your name?",
+                "Can I have your name?",
+                "What do you call yourself?",
+                "What are you named?"
+            ],
+            "responses": [
+                "Sara 😉"
+            ]
+        },
+        {
+            "tag": "dream",
+            "patterns": [
+                "What is dream image?",
+                "Can I know what is dream image?",
+                "What is ai dream?",
+                "dream image?"
+            ],
+            "responses": [
+                "DeepDream is a computer vision program created that uses a convolutional neural network to find and enhance patterns in images via algorithmic pareidolia, thus creating a dream-like appearance reminiscent of a psychedelic experience in the deliberately overprocessed images."
+            ]
+        },
+        {
+            "tag": "qna",
+            "patterns": [
+                "What does it relate to autism child",
+                "How is it connect the autism child with the user",
+                "How does the medium functioning"
+            ],
+            "responses": [
+                "Deep dream take advantages of Autism Child unique and special arts to become the source of artstyle to define new ways on refining and perfecting new image."
+            ]
+        },
+        {
+            "tag": "aruco",
+            "patterns": [
+                "How the AR works ?",
+                "Augmented- Reality ?",
+                "How AR is implemented ?"
+            ],
+            "responses": [
+                "The ArUco decoding algorithm is capable of locating, decoding, and estimating the pose (location and orientation in space) of any ArUco markers appearing in an image.",
+                "An aruco marker is a fiducial marker that is placed on the object or scene being imaged."
+            ]
+        },
+        {
+            "tag": "marketplace",
+            "patterns": [
+                "What is the marketplace ?",
+                "How the marketplace ?",
+                "Where is the marketplace ?"
+            ],
+            "responses": [
+                "Marketplace is used to finance the Art Style creator for their contribution and participations. \nFor user, it allow user to purchase generated AI- images into frame. \n2. For the Autism Child, they can upload their arts to become the preset of the art style and received fund for each Image generated."
+            ]
+        },
+        {
+            "tag": "socialmedia",
+            "patterns": [
+                "What is the social platform ?",
+                "How does the platform work ?",
+                "social platform?"
+            ],
+            "responses": [
+                "Social media platforms allow users to have conversations, share information and create web content.",
+                "A social hub is a digital property for your business or brand that collects the content you post on various social networks and displays it together. It may or may not contain user generated content.",
+                "The best explanation for social media is that it's word of mouth on steroids, and people are sharing more than words. They also share ideas, pictures, video,"
+            ]
+        },
+        {
+            "tag": "autism",
+            "patterns": [
+                "What is Autism Child ?",
+                "Who is Autism Child ?",
+                "Autism Child ?"
+            ],
+            "responses": [
+                "Autism spectrum disorder (ASD) is a developmental disability caused by differences in the brain.",
+                "Autistic people may act in a different way to other people ,find it hard to understand how other people think or feel, find things like bright lights or loud noises overwhelming, stressful or uncomfortable. get anxious or upset about unfamiliar situations and social events. take longer to understand information.",
+                "People with ASD often have problems with social communication and interaction, and restricted or repetitive behaviors or interests."
+            ]
+        }
+    ]
+}

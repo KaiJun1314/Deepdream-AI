@@ -1,0 +1,389 @@
+{% extends "base.html" %}
+{% block stylesheet %}
+<style>
+    @media (max-width: 430px) {
+        .styles .settings-image {
+            width: 125px;
+        }
+    }
+
+    @media (max-width: 360px) {
+        .styles .settings-image {
+            width: 112px;
+        }
+    }
+
+    .styles .style-image-wrapper.selected .settings-image {
+        opacity: 0.9;
+        -webkit-filter: brightness(60%);
+        -moz-filter: brightness(60%);
+        -ms-filter: brightness(60%);
+        -o-filter: brightness(60%);
+        filter: brightness(60%);
+    }
+
+    .styles .settings-image {
+        width: 160px;
+        height: 100px;
+    }
+
+    .selected-icon {
+        display: none;
+        position: absolute;
+        z-index: 1000;
+        font-size: 30px;
+        color: #8ac249;
+        left: 42%;
+        top: 30%;
+    }
+
+    .styles .style-image-wrapper.selected .selected-icon {
+        display: inline-block;
+    }
+
+    .styles .style-image-wrapper .title {
+        position: absolute;
+        color: #eee;
+        z-index: 1001;
+        bottom: 5px;
+        left: 0;
+        display: none;
+        width: 100%;
+        background: rgba(50, 50, 50, 0.65);
+        text-align: center;
+        padding-bottom: 3px;
+        padding-top: 3px;
+    }
+
+    .styles .style-image-wrapper.selected .title {
+        display: inline-block;
+    }
+
+    .use-images-settings label {
+        margin-bottom: 0px !important;
+    }
+
+    .use-images-settings .preview-link:hover {
+        color: #eba133;
+    }
+
+    .styles .style-image-wrapper {
+        margin-left: 5px;
+        margin-right: 5px;
+        margin-bottom: 0px;
+    }
+
+    .styles .style-image-wrapper img {
+        width: 100%;
+        height: 100px;
+    }
+
+    .styles .style-image-wrapper label {
+        margin-right: 0px;
+    }
+
+    .styles .style-image-wrapper .title,
+    .styles .style-image-wrapper input {
+        display: none;
+    }
+
+    .styles .style-image-wrapper.upload-your-own .settings-image {
+        border: 2px solid #ccc;
+        border: 2px solid #ccc;
+    }
+
+    .styles .style-image-wrapper.selected.upload-your-own .settings-image i {
+        display: none;
+    }
+
+    .styles .style-image-wrapper.selected .settings-image {
+        opacity: 0.9;
+        -webkit-filter: brightness(60%);
+        -moz-filter: brightness(60%);
+        -ms-filter: brightness(60%);
+        -o-filter: brightness(60%);
+        filter: brightness(60%);
+    }
+
+    .fm-selection {
+        display: inline-block;
+        margin: 10px 25px;
+        position: relative;
+    }
+
+    .fm-selection img {
+        padding: 3px;
+        border: 3px solid #ddd;
+        border-radius: 5px;
+        max-height: 170px;
+    }
+
+    .fm-selection .remove-btn {
+        position: absolute;
+        font-size: 1.4em;
+        padding: 5px 7px;
+        right: -12px;
+        top: -12px;
+        border-radius: 100%;
+        border: 1px solid #ddd;
+        color: #999;
+        background: #eee;
+    }
+
+    .fm-selection .remove-btn:hover {
+        cursor: pointer;
+        background: #ddd;
+        border: 1px solid #ccc;
+    }
+
+    .radiobuttons input[type=radio]:checked+span {
+        color: #eba133;
+    }
+
+    .radiobuttons input[type=radio]:checked+span:after {
+        background: #eba133;
+        opacity: 0.9;
+    }
+
+    .radiobuttons input[type=radio]+span:before {
+        border: 2px solid #e6e7ed;
+    }
+
+    .radiobuttons {
+        -webkit-touch-callout: none;
+        -webkit-user-select: none;
+        -khtml-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none
+    }
+
+    .radiobuttons input[type=radio] {
+        position: absolute;
+        -moz-opacity: 0;
+        -webkit-opacity: 0;
+        opacity: 0
+    }
+
+    .radiobuttons input[type=radio]:disabled+span {
+        color: #919599;
+        cursor: auto
+    }
+
+    .radiobuttons input[type=radio]:disabled+span:before {
+        border-color: #e6e7ed;
+        background: #e6e7ed
+    }
+
+    .radiobuttons input[type=radio]+span {
+        cursor: pointer
+    }
+
+    .radiobuttons input[type=radio]+span:before {
+        content: '';
+        font-family: Material-Design-Iconic-Font;
+        display: inline-block;
+        width: 26px;
+        height: 26px;
+        vertical-align: middle;
+        margin: -2px 9px 0 0;
+        border: 1px solid #e6e7ed;
+        color: #fff;
+        font-size: 22px;
+        font-size: 2.2rem;
+        line-height: 24px;
+        text-align: center;
+        -webkit-border-radius: 50%;
+        -moz-border-radius: 50%;
+        border-radius: 50%;
+        -moz-background-clip: padding;
+        -webkit-background-clip: padding-box;
+        background-clip: padding-box
+    }
+
+    .radiobuttons input[type=radio]:focus+span::before,
+    .radiobuttons input[type=radio]:active+span::before {
+        outline: 0
+    }
+
+    .radiobuttons input[type=radio]:checked+span {
+        color: #4bae4f
+    }
+
+    .radiobuttons input[type=radio]:checked+span:after {
+        content: '';
+        width: 14px;
+        height: 14px;
+        background: #4bae4f;
+        -webkit-border-radius: 50%;
+        -moz-border-radius: 50%;
+        border-radius: 50%;
+        -moz-background-clip: padding;
+        -webkit-background-clip: padding-box;
+        background-clip: padding-box;
+        position: absolute;
+        top: 4px;
+        left: 6px
+    }
+
+    .radiobuttons label {
+        display: inline-block;
+        width: auto;
+        margin-right: 25px;
+        margin-bottom: 15px
+    }
+
+    .checkboxes>.i,
+    .radiobuttons>.i {
+        margin-bottom: 15px
+    }
+
+    .checkboxes label,
+    .radiobuttons label {
+        font-weight: 400;
+        position: relative
+    }
+
+    .settings-image {
+        cursor: pointer;
+        overflow: hidden;
+        display: inline-block;
+        margin-top: 5px;
+        margin-bottom: 0px;
+    }
+</style>
+{% endblock stylesheet %}
+{% block sub_navigation %}
+<li class="nav-item"><a href="{{ url_for('index')}}" class="nav-link">Home</a></li>
+{% endblock %}
+{% block content %}
+
+<body class="x-hidden has-sticky-header">
+    <div class="bg-very__gray">
+        <div class="container main_section" style="background-color: white;">
+            <span class="notifications" id="user-notifications"></span>
+            <h2 class="section-title text-center border_line">Art Generator</h2>
+            <form id="form-deep-style" enctype="multipart/form-data" class="generator-form">
+                <div class="section-spacer text-center">
+                    <input class="image_input" type='file' style="display : none; " name="base_image" accept="image/*">
+                    <div class="fm-choose-file btn event-btn choose_btn">
+                        1. Choose base image
+                    </div>
+                </div>
+                <div class="text-center section-spacer bg-very__gray">
+                    <div class="style_image_section">
+                        <input class="image_input" type='file' style="display : none; " name="style_image"
+                            accept="image/*">
+                        <div class="fm-choose-file btn event-btn choose_btn">
+                            2. Choose style image</div>
+                    </div>
+                    <p class="text-center" style="margin-top: 15px;">
+                        Or select one of the autism child art
+                    </p>
+                    <div class="justify-content-center radiobuttons default-styles styles use-images-settings row">
+                    </div>
+                </div>
+                <div class="section-spacer text-center generate-button-wrapper">
+                    <button id="submit" type="submit" class="submit generator-submit btn event-btn">
+                        <span>
+                            3. Generate
+                        </span>
+                    </button>
+                </div>
+            </form>
+
+        </div>
+    </div>
+</body>
+{% endblock content %}
+{% block footer_scripts %}
+<script>
+    $(".choose_btn").on("click", function () {
+        $(this).parent().find("input").trigger('click');
+    });
+    $(".image_input").change(function () {
+        $image_frame = $(this).parent().find(".fm-selection");
+        if ($image_frame.length) {
+            $image_frame.remove();
+        }
+        $radio = $(this).closest(".section-spacer").find(".radiobuttons");
+        if ($radio.length) {
+            $radio.find('.selected').removeClass('selected');
+            $('input[name="styleId"]:checked').prop('checked', false);
+        }
+        var src = URL.createObjectURL($(this)[0].files[0]);
+        var $frame = $($.parseHTML(
+            //<i class="remove-btn fas fa-times"></i>
+            `<div class="fm-selection"><img></div>`));
+        $frame.find('img').attr('src', src);
+        $(this).parent().append($frame);
+    });
+    $('#form-deep-style').submit(function (event, element) {
+        event.preventDefault();
+        var base = $('input[name="base_image"]').val();
+        if ($("#user-notifications").length) {
+            $(".alert").remove();
+        }
+        if (!base) {
+            alert('Please select a base image', 'danger');
+        } else {
+            var formData = new FormData(this);
+            $.ajax({
+                type: 'POST',
+                url: "{{ post_path }}",
+                data: formData,
+                cache: false,
+                contentType: false,
+                processData: false,
+                success: function (data) {
+                    window.location.href = data;
+                }
+            });
+            $('.main_section').empty();
+            let indicator =
+                `<div class="d-flex flex-row justify-content-center" style="padding-bottom:20px;">
+                <h3 class="section-title text-center border_line">Generating the Art ...</h3>
+            </div>
+            <div class="d-flex flex-row justify-content-center">
+                <div class="uil-ring-css" style="-webkit-transform: scale(0.6);">
+                    <div></div>
+                </div>
+            </div>
+            `
+            $('.main_section').append(indicator);
+        }
+    });
+    $(async function () {
+        $('.radiobuttons').html(`<h1>Loading Art ....</h1>`);
+        let data = await (await fetch("{{url_for('get_art')}}")).json();
+        let membersDOM = "";
+        for (let i = 0; i < data.art.length; i++) {
+            let radioSelect =
+                `<div class="pull-left style-image-wrapper">
+                    <label>
+                        <input type="radio" name="styleId" value=${data.art[i].id}>
+                        <div class="settings-image">
+                            <img src="${data.art[i].url}">
+                        </div>
+                        <i class="selected-icon fa fa-check"></i>
+                        <div class="title">${data.art[i].title}</div>
+                    </label>
+                </div>`
+            membersDOM += radioSelect;
+        }
+        $('.radiobuttons').html(membersDOM);
+        $('.radiobuttons').children(":first").find('input').prop('checked', true);
+        $('.radiobuttons').children(":first").addClass('selected');
+
+        $('.style-image-wrapper').on('click', function (event) {
+            $('.style_image_section .fm-selection').remove();
+            $(".style_image_section .image_input").val("");
+            var $parentRadiosWrapper = $(this).parents('.radiobuttons');
+            $parentRadiosWrapper.find('.style-image-wrapper').removeClass('selected');
+            $(this).addClass('selected');
+            $parentRadiosWrapper.find('.style-image-wrapper input').prop('checked', false);
+            $(this).find('input').prop('checked', true);
+        });
+    });
+</script>
+{% endblock footer_scripts %}

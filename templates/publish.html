@@ -1,0 +1,103 @@
+{% extends "base.html" %}
+{% block stylesheet %}
+<style>
+    .publish-dream .left {
+        text-align: center;
+    }
+
+    .publish-dream .left img {
+        border: 1px solid #eee;
+        border-radius: 3px;
+        max-height: 400px;
+        max-width: 500px;
+    }
+</style>
+{% endblock stylesheet %}
+{% block sub_navigation %}
+<li class="nav-item"><a href="{{ url_for('index')}}" class="nav-link">Home</a></li>
+{% endblock %}
+{% block content %}
+
+<body class="x-hidden has-sticky-header">
+    <div class="container publish-dream">
+        <span class="notifications" id="user-notifications"></span>
+        <h1 class="border_line text-center" style="width: 100%;">Publish The Art</h1>
+        <div class="row" , style="padding-top: 20px;">
+            <form class="submit-loading-form col-lg-6" enctype="multipart/form-data">
+                <div class="form-group">
+                    <label for="name">Your Name <small style="font-weight: normal;">(required)</small> </label>
+                    <input name="name" class="form-control" id="name" type="text" autofocus="" placeholder="Name"
+                        minlength="3" required="">
+                </div>
+                <div class="form-group">
+                    <label for="contact">Contact <small style="font-weight: normal;">(required)</small></label>
+                    <input name="contact" class="form-control" id="contact" type="text" placeholder="Contact Number" required=""
+                        minlength="10" maxlength="15">
+                </div>
+                <div class="form-group">
+                    <label for="title">Title <small style="font-weight: normal;">(required)</small></label>
+                    <input name="title" class="form-control" id="title" type="text" placeholder="Title" required=""
+                        minlength="3" maxlength="50">
+                </div>
+                <div class="form-group">
+                    <label for="tags">Tags</label>
+                    <input name="tags" class="form-control" id="tags" type="text"
+                        placeholder="Example: catart, fractals, abstract-art">
+                </div>
+                <div class="form-group">
+                    <label for="description">Description</label>
+                    <textarea name="description" class="form-control" id="description" rows="6" autofocus=""
+                        placeholder="Short description" maxlength="3000"></textarea>
+                </div>
+                <label>By clicking submit you agree to our <strong>Terms and Condition</strong> in publishing the art</label><br>
+                <input type="submit" class="btn-submit btn" value="Publish" btn-submit-label="Submitting..."
+                    style="margin-right: 10px; background-color: #2F5BE7; color: white;">
+                <a href="{{cancel_path}}" class="btn btn-default">Cancel</a>
+            </form>
+            <div class="col-lg-6 left">
+                <img src="{{result_image}}">
+            </div>
+        </div>
+    </div>
+    <div class="clearfix"></div>
+</body>
+{% endblock %}
+{% block footer_scripts %}
+<script>
+    $('.submit-loading-form').on('submit', function (event, element) {
+        event.preventDefault();
+        let $submitButton = $(this).find('.btn-submit');
+        let label = $submitButton.attr('btn-submit-label');
+        if (label === "Submitting...") {
+            $submitButton.val(label);
+            $submitButton.attr('disabled', true);
+            $submitButton.css('opacity', '0.5');
+
+            var formValues = new FormData(this);
+            $.ajax({
+                type: 'POST',
+                url: "",
+                data: formValues,
+                cache: false,
+                contentType: false,
+                processData: false,
+                error : function(){
+                    console.log("error");
+                },
+                success: function (data) {
+                    console.log(data);
+                    alert(data.message, data.status);
+                    $submitButton.attr('btn-submit-label', 'Submitted');
+                    $submitButton.attr('disabled', false);
+                    $submitButton.val("Back to Home");
+                    $submitButton.css('opacity', '1');
+                    $submitButton.off('click');
+                    $submitButton.on('click', function () {
+                        window.location.href = "{{ url_for('index')}}"
+                    });
+                },
+            });
+        }
+    });
+</script>
+{% endblock footer_scripts %}

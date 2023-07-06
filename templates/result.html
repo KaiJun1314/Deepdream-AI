@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+{% block stylesheet %}
+<style>
+    .single-dream {
+        position: relative;
+        background: #fff;
+        margin-top: -20px;
+        padding: 20px 40px;
+    }
+    .single-dream .dream-image {
+        margin-top: 20px;
+        min-height: 200px;
+        max-height: 400px;
+        max-width: 500px;
+    }
+</style>
+{% endblock stylesheet %}
+{% block sub_navigation %}
+<li class="nav-item"><a href="{{ url_for('index')}}" class="nav-link">Home</a></li>
+{% endblock %}
+
+{% block content %}
+
+<body class="x-hidden has-sticky-header">
+    <div class="container">
+        <div class="single-dream">
+            <div class="d-flex flex-row justify-content-center" style="padding-bottom:20px;">
+                <img id="dream-image" class=" col-lg-10 img-responsive" src="{{ result_image }}">
+            </div>
+            <div class="d-flex flex-row justify-content-center" style="gap: 20px;">
+                <a href="{{ publish_url }}" class="btn event-btn">
+                    <i class="fa fa-globe"></i>
+                    Publish to Marketplace
+                </a>
+                <a href="{{ url_for('art_generator')}}" class="btn btn-sm event-btn">
+                    <i class="fas fa-redo"></i>
+                    Repeat &amp; Try Other
+                </a>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+    </div>
+</body>
+{% endblock content %}
