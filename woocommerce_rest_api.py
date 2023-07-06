@@ -3,8 +3,8 @@ import re
 
 wcapi = API(
     url="http://localhost/WordPress/",
-    consumer_key="ck_6e8449a35239300dc0734bc72f311f98534d8fec",
-    consumer_secret="cs_a13d812a277390c344e57be8b0db5999f9a5ca0e",
+    consumer_key="Your Consumer Key",
+    consumer_secret="Your Consumer Secret",
     version="wc/v3"
 )
 

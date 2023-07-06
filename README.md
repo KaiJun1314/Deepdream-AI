@@ -27,13 +27,8 @@ Art Generator\
 Art Visualizer\
 ![Art Visualizer](assests/ArtVisualizer.png)
 
-Chatbot\
-![Chatbot](assests/Chatbot.png)
-
-Marketplace\
-![Marketplace](assests/Marketplace.png)
-
 ## Installation
+### Art Generator
 1. Install Tensorflow using this guide (https://www.tensorflow.org/install/pip)
 2. Install other required dependency with this command
 ```
@@ -44,5 +39,14 @@ pip3 install -r requirements.txt
 python3 app.py
 ```
 
+### Marketplace
+1.  Download and Install XAMPP (https://www.apachefriends.org/download.html)
+2. Create a Database for Your New Site
+3. Download and Install WordPress in XAMPP (https://wordpress.org/download/)
+4. Generate API keys in the WordPress admin interface by following this guide (http://woocommerce.github.io/woocommerce-rest-api-docs/#authentication)
+5. Update your API keys in `woocommerce_rest_api.py`
+
+
 ## Reference
 - Gatys, L. A., Ecker, A. S., & Bethge, M. (2015). A neural algorithm of artistic style. arXiv preprint arXiv:1508.06576.
+- How to install WordPress using XAMPP? Retrieved from https://elementor.com/academy/install-wordpress-xampp/ 
